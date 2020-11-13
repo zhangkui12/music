@@ -1,14 +1,14 @@
 // vue.config.js => vue的配置文件
 module.exports = {
   // 基本路径
-  baseUrl: "/",
+  // baseUrl: "/",
   // 输出文件目录
   outputDir: "dist",
   // eslint-loader 是否在保存的时候检查
   lintOnSave: true,
   // use the full build with in-browser compiler?
   // https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only
-  compiler: false,
+  // compiler: false,
   // webpack配置
   // see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md
   // chainWebpack用于存放loader
@@ -16,7 +16,7 @@ module.exports = {
   configureWebpack: () => {},
   // vue-loader 配置项
   // https://vue-loader.vuejs.org/en/options.html
-  vueLoader: {},
+ // vueLoader: {},
   // 生产环境是否生成 sourceMap 文件
   productionSourceMap: true,
   // css相关配置
@@ -32,13 +32,14 @@ module.exports = {
   },
   // 是否启用dll
   // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#dll-mode
-  dll: false,
+ // dll: false,
   // PWA 插件相关配置
   // see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
   pwa: {},
   // webpack-dev-server 相关配置
   devServer: {
-    open: process.platform === "darwin",
+    open: true,
+    inline: true,
     host: "0.0.0.0",
     port: 8080,
     https: false,
