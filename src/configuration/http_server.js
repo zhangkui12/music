@@ -1,34 +1,34 @@
-import axios from 'axios'
-import store from '@/store'
+import axios from "axios";
+import store from "@/store";
 
-axios.defaults.baseURL = ' http://localhost:3000'
-axios.defaults.timeout = 10000
+axios.defaults.baseURL = " http://localhost:3000";
+axios.defaults.timeout = 10000;
 // 请求拦截器
 axios.interceptors.request.use(
-  (config) => {
+  config => {
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
-    const token = store.state.token
-    token && (config.headers.Authorization = token)
-    return config
+    const token = store.state.token;
+    token && (config.headers.Authorization = token);
+    return config;
   },
-  (error) => {
+  error => {
     console.log(error);
   }
-)
+);
 
 // 响应拦截器
 axios.interceptors.response.use(
-  (response) => {
+  response => {
     if (response.status === 200) {
-      return Promise.resolve(response)
+      return Promise.resolve(response);
     } else {
-      return Promise.reject(response)
+      return Promise.reject(response);
     }
   },
   // 服务器状态码不是200的情况
-  (error) => {
-    console.log('錯誤信息', error.response.data.message)
+  error => {
+    console.log("錯誤信息", error.response.data.message);
     // if (error.response.status) {
     //   switch (error.response.status) {
     //     // 401: 未登录
@@ -82,45 +82,39 @@ axios.interceptors.response.use(
     //   return Promise.reject(error.response)
     // }
   }
-)
+);
 
 /**
  * post方法，对应post请求
  * @param {String} url [请求的url地址]
  * @param {Object} data [请求时携带的参数]
  */
-export const post = (url:string, data:object) => {
+export const post = (url, data) => {
   return new Promise((resolve, reject) => {
     axios
       .post(url, JSON.stringify(data))
-      .then((res) => {
-        resolve(res.data)
+      .then(res => {
+        resolve(res.data);
       })
-      .catch((err) => {
-        reject(err.data)
-      })
-  })
-}
+      .catch(err => {
+        reject(err.data);
+      });
+  });
+};
 /**
  * get方法，对应get请求
  * @param {String} url [请求的url地址]
  * @param {Object} params [请求时携带的参数]
  */
-export const get = (url:string, params:object) => {
+export const get = (url, params) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(url, {
-        params: params,
+      .get(url, { params: params })
+      .then(res => {
+        resolve(res.data);
       })
-      .then((res) => {
-        resolve(res.data)
-      })
-      .catch((err) => {
-        reject(err.data)
-      })
-  })
-}
-// export default {
-//   post,
-//   get,
-// }
+      .catch(err => {
+        reject(err.data);
+      });
+  });
+};

@@ -10,7 +10,7 @@ import { getBanner } from "@/api";
 import { onMounted } from "vue";
 
 export default {
-  name: "home",
+  name: "banner",
   components: { HelloWorld },
   setup () {
     onMounted(() => {
