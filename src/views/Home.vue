@@ -12,7 +12,7 @@ import { onMounted } from "vue";
 export default {
   name: "home",
   components: { HelloWorld },
-  setup () {
+  setup() {
     onMounted(() => {
       const data = getBanner();
       console.log("22", data);
