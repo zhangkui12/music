@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
-
+// 路由表
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -17,10 +17,10 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   }
 ];
-
+// 创建router
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 });
-
+// 导出router
 export default router;

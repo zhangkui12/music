@@ -6,16 +6,18 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { getBanner } from "@/api/index.ts";
+import { onMounted } from "vue";
 
-@Options({
-  components: {
-    HelloWorld
-  }
-})
-export default class Home extends Vue {
-
-
-}
+export default {
+  name: "home",
+  components: { HelloWorld },
+  setup() {
+    onMounted(() => {
+      let data = getBanner();
+      console.log("22", data);
+    });
+  },
+};
 </script>
